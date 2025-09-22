@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.bestellen.click_munch.user.UserControllerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-03-03T18:26:32" hostname="Mikes-MacBook-Pro.local" time="0.239">
+  <properties/>
+  <testcase name="shouldFindById()" classname="com.bestellen.click_munch.user.UserControllerTest" time="0.232"/>
+  <testcase name="shouldCreate()" classname="com.bestellen.click_munch.user.UserControllerTest" time="0.002"/>
+  <testcase name="shouldFindAll()" classname="com.bestellen.click_munch.user.UserControllerTest" time="0.002"/>
+  <testcase name="shouldFindByUsername()" classname="com.bestellen.click_munch.user.UserControllerTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
