@@ -30,3 +30,6 @@ replay_pid*
 # Idea + Gradle #
 .gradle/
 .idea/
+
+# Java build binaries #
+bin/
