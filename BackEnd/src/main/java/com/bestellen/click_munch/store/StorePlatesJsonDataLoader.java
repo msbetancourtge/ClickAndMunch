@@ -3,6 +3,7 @@ package com.bestellen.click_munch.store;
 import com.bestellen.click_munch.menu.DessertRepository;
 import com.bestellen.click_munch.menu.DrinkRepository;
 import com.bestellen.click_munch.menu.PlateRepository;
+import com.bestellen.click_munch.store.dto.StoreRequests;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.asm.TypeReference;
 import org.springframework.boot.CommandLineRunner;

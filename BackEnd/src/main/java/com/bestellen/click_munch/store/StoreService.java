@@ -1,7 +1,10 @@
 package com.bestellen.click_munch.store;
 
 import com.bestellen.click_munch.menu.*;
-import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
+import com.bestellen.click_munch.store.dto.Store;
+import com.bestellen.click_munch.store.dto.StoreRequest;
+import com.bestellen.click_munch.store.dto.StoreRequests;
+import com.bestellen.click_munch.store.dto.StoreUpdateRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -79,6 +82,23 @@ public class StoreService {
                 store.latitude(),
                 store.longitude(),
                 store.email());
+    }
+
+    @Transactional
+    public void updateByEmail(String email, StoreUpdateRequest request) {
+        Store exists = storeRepository.findByEmail(email);
+        if (exists == null)
+                        throw new RuntimeException("Store not found");
+
+        // Use provided values or keep existing ones when null
+        String name = request.name() != null ? request.name() : exists.name();
+        String alias = request.alias() != null ? request.alias() : exists.alias();
+        String password = request.password() != null ? request.password() : exists.password();
+        String address = request.address() != null ? request.address() : exists.address();
+        Double latitude = request.latitude() != null ? request.latitude() : exists.latitude();
+        Double longitude = request.longitude() != null ? request.longitude() : exists.longitude();
+
+        storeRepository.updateData(name, alias, password, address, latitude, longitude, email);
     }
 
     public void delete(String email) {

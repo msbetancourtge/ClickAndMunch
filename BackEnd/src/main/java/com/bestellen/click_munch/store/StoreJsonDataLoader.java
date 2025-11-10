@@ -1,5 +1,6 @@
 package com.bestellen.click_munch.store;
 
+import com.bestellen.click_munch.store.dto.Stores;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.asm.TypeReference;
 import org.springframework.boot.CommandLineRunner;

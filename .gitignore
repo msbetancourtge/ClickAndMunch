@@ -33,3 +33,4 @@ replay_pid*
 
 # Java build binaries #
 bin/
+build/

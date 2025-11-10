@@ -1,6 +1,6 @@
-package com.bestellen.click_munch.store;
+package com.bestellen.click_munch.store.dto;
 
-public record PlateRequest(
+public record DrinkRequest(
         String name,
         String description,
         Double price,

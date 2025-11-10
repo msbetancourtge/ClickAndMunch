@@ -1,4 +1,4 @@
-package com.bestellen.click_munch.store;
+package com.bestellen.click_munch.store.dto;
 
 import java.util.List;
 

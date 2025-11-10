@@ -1,7 +1,11 @@
 package com.bestellen.click_munch.store;
 
+import com.bestellen.click_munch.store.dto.Store;
+import com.bestellen.click_munch.store.dto.StoreRequests;
+import com.bestellen.click_munch.store.dto.StoreResponse;
+import com.bestellen.click_munch.store.dto.StoreMenuResponse;
+import com.bestellen.click_munch.store.dto.StoreUpdateRequest;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -36,6 +40,45 @@ public class StoreController {
         }
     }
 
+    /* Finds a store by ID as a DTO without password */
+    @GetMapping("/{id}/info")
+    public StoreResponse viewById(@PathVariable Integer id) {
+            try {
+            Store store = storeService.findById(id);
+            return new StoreResponse(
+                    store.id(),
+                    store.name(),
+                    store.alias(),
+                    store.email(),
+                    store.address(),
+                    store.latitude(),
+                    store.longitude(),
+                    store.plates(),
+                    store.drinks(),
+                    store.desserts()
+            );
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Store not found");
+        }    
+    }
+
+    /* Menu-only endpoint */
+    @GetMapping("/{id}/info/menu")
+    public StoreMenuResponse getMenu(@PathVariable Integer id) {
+        try {
+            Store store = storeService.findById(id);
+            return new StoreMenuResponse(
+                store.id(),
+                store.name(),
+                store.alias(),
+                store.plates(),
+                store.drinks(),
+                store.desserts());
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Store not found");
+        }
+    }
+
     @GetMapping("/name/{name}")
     public List<Store> findByName(@PathVariable String name) {
         return storeService.findByName(name);
@@ -61,13 +104,24 @@ public class StoreController {
         storeService.createMenu(storeRequests);
     }
 
-    @PutMapping("{email}")
+    @PutMapping("/{email}")
     public void update(@PathVariable String email, @RequestBody Store store) {
         if(storeService.findByEmail(email)!=null && Objects.equals(store.email(), email)) {
             storeService.update(store);
         }
         else{
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No match");
+        }
+    }
+
+    /* Edits a store given an email. Edits the specified fields in a DTO. */
+    @PutMapping("/{email}/edit")
+        @ResponseStatus(HttpStatus.OK)
+    public void updateStore(@PathVariable String email, @RequestBody StoreUpdateRequest req) {
+        try {
+            storeService.updateByEmail(email, req);
+        } catch (RuntimeException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Store not found");
         }
     }
 
