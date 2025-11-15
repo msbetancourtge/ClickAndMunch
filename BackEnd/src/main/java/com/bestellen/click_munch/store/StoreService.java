@@ -1,6 +1,7 @@
 package com.bestellen.click_munch.store;
 
 import com.bestellen.click_munch.menu.*;
+import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
 import com.bestellen.click_munch.store.dto.Store;
 import com.bestellen.click_munch.store.dto.StoreRequest;
 import com.bestellen.click_munch.store.dto.StoreRequests;
